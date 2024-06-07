@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/awakeScene.unity
     guid: 69160dfbc3e10454fac39b45a5c98850
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/ComunityMap.unity
     guid: 39dd73fe576aa7f46b6735a5fa664b0e
   - enabled: 0
