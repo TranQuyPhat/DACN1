@@ -134,10 +134,10 @@ public class AIcontroller : MonoBehaviour{
 
     private void AISteer()
     {
-
+        //Tính toán vị trí tương đối:
         Vector3 relative = transform.InverseTransformPoint(currentWaypoint.transform.position);
         relative /= relative.magnitude;
-
+        //Tính toán lực lái ngang
         horizontal = (relative.x / relative.magnitude) * sterrForce;
 
     }

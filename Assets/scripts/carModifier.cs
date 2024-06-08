@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class carModifier : MonoBehaviour
 {
@@ -44,7 +45,8 @@ public class carModifier : MonoBehaviour
     public int I_handlingUpgrade = 0;
     public int[] P_handlingUpgrade;
 
-    private void Start(){
+    private void Start()
+    {
 
         updateValues();
         //PlayerPrefs.SetInt("currency", 99999999);
@@ -65,30 +67,40 @@ public class carModifier : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "awakeScene") return;
         updateValues();
     }
-    public void applyUpgrades(){
+    public void applyUpgrades()
+    {
 
-        if (I_engineUpgrade != PlayerPrefs.GetInt((controllerRef.carName + "engineUpgrade").ToString())) {
+        if (I_engineUpgrade != PlayerPrefs.GetInt((controllerRef.carName + "engineUpgrade").ToString()))
+        {
             PlayerPrefs.SetInt((controllerRef.carName + "engineUpgrade").ToString(), I_engineUpgrade);
-            updatePrices(P_engineUpgrade,I_engineUpgrade);
+            updatePrices(P_engineUpgrade, I_engineUpgrade);
         }
-        else if (I_colorUpgrade != PlayerPrefs.GetInt((controllerRef.carName + "colorUpgrade").ToString())) {
+        else if (I_colorUpgrade != PlayerPrefs.GetInt((controllerRef.carName + "colorUpgrade").ToString()))
+        {
+            // Nếu giá trị "color upgrade" hiện tại trong PlayerPrefs khác với giá trị I_colorUpgrade
             PlayerPrefs.SetInt((controllerRef.carName + "colorUpgrade").ToString(), I_colorUpgrade);
+            // Cập nhật giá trị "color upgrade" trong PlayerPrefs bằng I_colorUpgrade
             updatePrices(P_colorUpgrade, I_colorUpgrade);
+            // Gọi hàm updatePrices() để cập nhật các giá liên quan đến "color upgrade"
         }
-        else if (I_handlingUpgrade != PlayerPrefs.GetInt((controllerRef.carName + "handlingUpgrade").ToString())) {
+        else if (I_handlingUpgrade != PlayerPrefs.GetInt((controllerRef.carName + "handlingUpgrade").ToString()))
+        {
             PlayerPrefs.SetInt((controllerRef.carName + "handlingUpgrade").ToString(), I_handlingUpgrade);
             updatePrices(P_handlingUpgrade, I_handlingUpgrade);
         }
-        else if (I_nitrusUpgrade != PlayerPrefs.GetInt((controllerRef.carName + "nitrusUpgrade").ToString())) {
-            PlayerPrefs.SetInt((controllerRef.carName + "nitrusUpgrade").ToString(),I_nitrusUpgrade);
+        else if (I_nitrusUpgrade != PlayerPrefs.GetInt((controllerRef.carName + "nitrusUpgrade").ToString()))
+        {
+            PlayerPrefs.SetInt((controllerRef.carName + "nitrusUpgrade").ToString(), I_nitrusUpgrade);
             updatePrices(P_nitrusUpgrade, I_nitrusUpgrade);
         }
-        else if (I_spoilerUpgrade != PlayerPrefs.GetInt((controllerRef.carName + "spoilerUpgrade").ToString())) {
-            PlayerPrefs.SetInt((controllerRef.carName + "spoilerUpgrade").ToString(),I_spoilerUpgrade);
-            updatePrices(P_spoilerUpgrade,I_spoilerUpgrade);
+        else if (I_spoilerUpgrade != PlayerPrefs.GetInt((controllerRef.carName + "spoilerUpgrade").ToString()))
+        {
+            PlayerPrefs.SetInt((controllerRef.carName + "spoilerUpgrade").ToString(), I_spoilerUpgrade);
+            updatePrices(P_spoilerUpgrade, I_spoilerUpgrade);
         }
-        else if (I_wheelUpgrade != PlayerPrefs.GetInt((controllerRef.carName + "wheelUpgrade").ToString())) {
-            PlayerPrefs.SetInt((controllerRef.carName + "wheelUpgrade").ToString(),I_wheelUpgrade);
+        else if (I_wheelUpgrade != PlayerPrefs.GetInt((controllerRef.carName + "wheelUpgrade").ToString()))
+        {
+            PlayerPrefs.SetInt((controllerRef.carName + "wheelUpgrade").ToString(), I_wheelUpgrade);
             updatePrices(P_wheelUpgrade, I_wheelUpgrade);
         }
 
@@ -96,12 +108,14 @@ public class carModifier : MonoBehaviour
 
     }
 
-    public void test() {
+    public void test()
+    {
         applyUpgrades();
         updateValues();
     }
 
-    private void applySpoilerUpgrade(){
+    private void applySpoilerUpgrade()
+    {
         if (!spoilerUpgrade) return;
         foreach (GameObject G in L_spoilerUpgrade)
         {
@@ -110,32 +124,37 @@ public class carModifier : MonoBehaviour
 
         L_spoilerUpgrade[I_spoilerUpgrade].SetActive(true);
 
-    }    
-    private void applyColorUpgrade(){
+    }
+    private void applyColorUpgrade()
+    {
         if (!colorUpgrade) return;
 
         car.GetComponent<MeshRenderer>().material = L_colorUpgrade[I_colorUpgrade];
     }
 
-    private void updateValues(){
+    private void updateValues()
+    {
         I_engineUpgrade = PlayerPrefs.GetInt((controllerRef.carName + "engineUpgrade").ToString());
         I_colorUpgrade = PlayerPrefs.GetInt((controllerRef.carName + "colorUpgrade").ToString());
         I_handlingUpgrade = PlayerPrefs.GetInt((controllerRef.carName + "handlingUpgrade").ToString());
         I_nitrusUpgrade = PlayerPrefs.GetInt((controllerRef.carName + "nitrusUpgrade").ToString());
         I_spoilerUpgrade = PlayerPrefs.GetInt((controllerRef.carName + "spoilerUpgrade").ToString());
         I_wheelUpgrade = PlayerPrefs.GetInt((controllerRef.carName + "wheelUpgrade").ToString());
-        
+
         applySpoilerUpgrade();
         applyColorUpgrade();
 
-    }   
+    }
 
 
     //update all prices to 0 after bought
-    private void updatePrices(int[] givenArray,int index){
+    private void updatePrices(int[] givenArray, int index)
+    {
         if (index == 0) return;
-        for (int i = 0; i < givenArray.Length;i++ ) {
-            if (i <= index) {
+        for (int i = 0; i < givenArray.Length; i++)
+        {
+            if (i <= index)
+            {
                 givenArray[i] = 0;
 
             }

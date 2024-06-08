@@ -15060,7 +15060,7 @@ MonoBehaviour:
   reverse: 0
   nitrusValue: 0
   nitrusFlag: 0
-  carPrice: 500000
+  carPrice: 500
   carName: BMW 1980
 --- !u!114 &706356597171132762
 MonoBehaviour:

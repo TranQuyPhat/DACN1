@@ -176,7 +176,6 @@ public class GameManager : MonoBehaviour
             presentVehicles[i].name = fullArray[i].GetComponent<controller>().carName;
             presentVehicles[i].node = fullArray[i].GetComponent<inputManager>().currentNode;
         }
-
         if (!RR.hasFinished)
             for (int i = 0; i < presentVehicles.Count; i++)
             {

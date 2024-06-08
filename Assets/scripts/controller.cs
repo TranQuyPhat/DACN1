@@ -77,7 +77,6 @@ public class controller : MonoBehaviour
 
         lastValue = engineRPM;
 
-
         addDownForce();
         animateWheels();
         steerVehicle();
@@ -100,8 +99,9 @@ public class controller : MonoBehaviour
         {
             rigidbody.drag = 0.1f;
         }
+        //tong cong suat cua dong co
+        // điều chỉnh công suất được truyền đến các bánh xe dựa trên chuyển động thẳng đứng của phương tiện.
         totalPower = 3.6f * enginePower.Evaluate(engineRPM) * (vertical);
-
 
 
 
@@ -188,7 +188,7 @@ public class controller : MonoBehaviour
         {
             for (int i = 0; i < wheels.Length; i++)
             {
-                wheels[i].motorTorque = totalPower / 4;
+                wheels[i].motorTorque = totalPower / 4;//Mô-men xoắn động cơ cho mỗi bánh xe được thiết lập là totalPower / 4, phân phối tổng công suất đều trên 4 bánh xe.
                 wheels[i].brakeTorque = brakPower;
             }
         }
@@ -220,7 +220,7 @@ public class controller : MonoBehaviour
 
     private void brakeVehicle()
     {
-
+        //xe di len
         if (vertical < 0)
         {
             brakPower = (KPH >= 10) ? 500 : 0;
@@ -236,20 +236,21 @@ public class controller : MonoBehaviour
 
 
     }
-
+    // chuyen dong cua cua banh
     private void steerVehicle()
     {
 
 
         //acerman steering formula
         //steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius + (1.5f / 2))) * horizontalInput;
-
+        //phai
         if (horizontal > 0)
         {
             //rear tracks size is set to 1.5f       wheel base has been set to 2.55f
             wheels[0].steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius + (1.5f / 2))) * horizontal;
             wheels[1].steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius - (1.5f / 2))) * horizontal;
         }
+        //trai
         else if (horizontal < 0)
         {
             wheels[0].steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius - (1.5f / 2))) * horizontal;
@@ -264,15 +265,15 @@ public class controller : MonoBehaviour
         }
 
     }
-
+    //chuyen dong quay banh xe
     private void animateWheels()
     {
         Vector3 wheelPosition = Vector3.zero;
-        Quaternion wheelRotation = Quaternion.identity;
+        Quaternion wheelRotation = Quaternion.identity;//lưu trữ góc quay của các bánh xe.
 
         for (int i = 0; i < 4; i++)
         {
-            wheels[i].GetWorldPose(out wheelPosition, out wheelRotation);
+            wheels[i].GetWorldPose(out wheelPosition, out wheelRotation);//lay vi tri va goc quay thuc te
             wheelMesh[i].transform.position = wheelPosition;
             wheelMesh[i].transform.rotation = wheelRotation;
         }
@@ -304,7 +305,7 @@ public class controller : MonoBehaviour
         centerOfMass = gameObject.transform.Find("mass").gameObject;
         rigidbody.centerOfMass = centerOfMass.transform.localPosition;
     }
-
+    //Lực hướng xuống này để giữ cho xe ổn định hơn khi di chuyển, đặc biệt là khi di chuyển với tốc độ cao.
     private void addDownForce()
     {
 

@@ -12,7 +12,7 @@ public class collectingCoin : MonoBehaviour
         coin = PlayerPrefs.GetInt("currency");
         gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
     }
-    public void OnTriggerEnter(Collider col)
+    public void OnTriggerEnter(Collider col)//Được gọi khi GameObject này va chạm với một GameObject khác.
     {
         if (col.gameObject.tag == "coin")
         {

@@ -37,7 +37,7 @@ public class awakeManager : MonoBehaviour
     [HideInInspector] public float rotateSpeed = 10f;
     [HideInInspector] public int vehiclePointer = 0;
     private bool finalToStart, startToFinal;
-[Header("Menu Screens")]
+    [Header("Menu Screens")]
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private GameObject mainMenu;
     [Header("Slider")]
@@ -59,8 +59,10 @@ public class awakeManager : MonoBehaviour
         }
 
     }
+
     private void Awake()
     {
+        // PlayerPrefs.SetInt("currency", 10000);
         mapSelectorCanvas.SetActive(false);
         DeafaultCanvas.SetActive(true);
         vehicleSelectCanvas.SetActive(false);

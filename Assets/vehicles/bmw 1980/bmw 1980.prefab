@@ -6961,7 +6961,7 @@ MonoBehaviour:
   P_nitrusUpgrade: 00000000f3e00100f3e00100
   car: {fileID: 4975652847170142413}
   colorUpgrade: 1
-  I_colorUpgrade: 0
+  I_colorUpgrade: 2
   L_colorUpgrade:
   - {fileID: 2100000, guid: eaf10aac96b5b534d951fc1d3d2fa08e, type: 2}
   - {fileID: 2100000, guid: fc127e09bf6a2a242b1accb8594f701d, type: 2}
