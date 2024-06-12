@@ -75,7 +75,6 @@ public class GameManager : MonoBehaviour
         finishCanvas.SetActive(false);
         pauseCanvas.SetActive(false);
         Time.timeScale = 1;
-        Debug.Log("restart");
     }
     public void Restart()
     {
